@@ -1,13 +1,15 @@
 import React from 'react';
-import './index.css';
+// import './index.css';
+import './Room.css';
 import { useState } from 'react';
 
-function Room () {
+function Room() {
 
     // const state = useState (true) ;
     // console.log( "Stete = ", state) ;
-    let [isLit , setLit] = useState (true) ;
-    let [age, setage] = useState(25) ; 
+    let [isLit, setLit] = useState(false);
+    let [age, setage] = useState(25);
+    let [temp, settemp] = useState(22);
 
     // function updatelit (){
     //     console.log ("Button Clicked") ;
@@ -21,24 +23,36 @@ function Room () {
     // }
 
 
-    return <div className="Room">
+    return <div className={`room ${isLit ? "lit" : "dark"}`}>
+        {/* Above function in className is used to switch between two different classes "lit" & "dark" to change the background through CSS. */}
         This is Room component.
-        <br/>
+        <br />
         {/* Lit = {isLit} */}
-        <br/>
-        The room is : {isLit ? "Lit" : "Dark"} <br/>
-        The age is : {age}
-        <br/><br/>
+        <br />
+        The room is : {isLit ? "Lit" : "Dark"} <br />
         {/* <button onClick= {updatelit}> Toggle Light </button> */}
-        <button onClick= {()=> setLit(!isLit)}> Toggle Light </button>
-        <br/><br/>
-        {/* <button onClick= {updateage}> Increment Age </button> */}
+        <button onClick={() => setLit(!isLit)}> Toggle Light </button>
+        <br />
+        <button onClick={() => { setLit(true); settemp(25) }} > Light ON </button>
+        <button onClick={() => { setLit(false); settemp(22) }} > Light OFF</button>
+        <br /><br />
 
-        <button onClick= { ()=> { console.log ("Age increment  arrow func") ;
-                                setage (++age) ; 
-                            }}
-                            > 
-        Increment Age </button>
+
+        The age is : {age}
+        <br />
+        {/* <button onClick= {updateage}> Increment Age </button> */}
+        <button onClick={() => {
+            console.log("Age increment  arrow func");
+            setage(++age);
+        }} >
+            Increment Age </button>
+        <button onClick={() => setage(--age)}> decrement Age </button>
+        <br /><br />
+
+        Room temprature : {temp} C
+        <br />
+        <button onClick={() => settemp(++temp)} > + </button>
+        <button onClick={() => settemp(--temp)} > - </button>
 
 
     </div>
